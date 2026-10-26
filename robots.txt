@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /obrigado.html
+Sitemap: https://cauacaetano.github.io/kit-ia-pequeno-negocio/sitemap.xml
