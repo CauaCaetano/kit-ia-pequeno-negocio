@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit IA para o Pequeno Negócio</title>
+<meta property="og:image" content="https://cauacaetano.github.io/kit-ia-pequeno-negocio/capa.png">
+<meta property="og:title" content="Kit IA para o Pequeno Negócio">
+<meta property="og:description" content="120 prompts prontos para o ChatGPT, Gemini ou Claude resolverem Instagram, WhatsApp, vendas, preço e cobrança. R$ 37, acesso na hora.">
+<meta name="description" content="120 prompts prontos para o dono de pequeno negócio usar no ChatGPT, Gemini ou Claude: Instagram, WhatsApp, vendas, preço e cobrança. R$ 37, acesso na hora.">
+<style>
+  :root {
+    --navy: #0f2a3d; --navy2: #163f5a; --teal: #1e5a7a; --gold: #ffd166; --ink: #1c1f26; --muted: #5b6472;
+    --bg: #f6f8fa; --card: #ffffff; --line: #e3e8ee; --green: #15803d;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.5; }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; margin: 0 0 12px; line-height: 1.15; }
+  p { margin: 0 0 14px; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+  .hero { background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 60%, var(--teal) 100%); color: #fff; padding: 56px 0 48px; }
+  .hero .tag { display: inline-block; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; opacity: .85; margin-bottom: 14px; }
+  .hero h1 { font-size: clamp(30px, 5vw, 46px); color: #fff; }
+  .hero h1 span { color: var(--gold); }
+  .hero p.sub { font-size: 18px; max-width: 640px; opacity: .95; margin-bottom: 26px; }
+  .btn { display: inline-block; background: var(--gold); color: var(--navy); font-weight: 700; font-size: 17px; padding: 15px 28px; border-radius: 10px; text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .12s ease, box-shadow .12s ease; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,.3); }
+  .btn:active { transform: translateY(0); }
+  .small { font-size: 13px; opacity: .8; margin-top: 10px; }
+  .pills { margin-top: 22px; }
+  .pill { display: inline-block; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.12); border-radius: 30px; padding: 5px 13px; font-size: 13px; margin: 0 6px 6px 0; }
+  section { padding: 44px 0; }
+  section h2 { font-size: clamp(24px, 3.6vw, 32px); color: var(--navy); }
+  .lead { color: var(--muted); font-size: 17px; max-width: 640px; }
+  ul.list { padding-left: 0; list-style: none; margin: 0; }
+  ul.list li { position: relative; padding-left: 28px; margin-bottom: 10px; }
+  ul.list li:before { content: ""; position: absolute; left: 0; top: 7px; width: 14px; height: 14px; border-radius: 50%; background: var(--gold); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+  .card h3 { font-size: 17px; color: var(--navy); }
+  .card p { color: var(--muted); font-size: 14.5px; margin: 0; }
+  .card .n { display: inline-block; font-size: 12px; font-weight: 700; color: var(--teal); letter-spacing: 1px; margin-bottom: 6px; }
+  .bonus { background: #fff8e1; border: 1px solid #f1d27a; }
+  .steps { counter-reset: s; display: grid; gap: 12px; margin-top: 18px; }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 16px 16px 64px; position: relative; }
+  .step:before { counter-increment: s; content: counter(s); position: absolute; left: 16px; top: 14px; width: 34px; height: 34px; border-radius: 50%; background: var(--navy); color: var(--gold); font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .price { background: var(--navy); color: #fff; border-radius: 16px; padding: 34px 24px; text-align: center; }
+  .price .old { opacity: .6; text-decoration: line-through; font-size: 18px; }
+  .price .val { font-family: Georgia, serif; font-size: 56px; line-height: 1; color: var(--gold); margin: 6px 0 4px; }
+  .price .val small { font-size: 22px; }
+  .price p { opacity: .9; }
+  .guar { display: flex; gap: 16px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+  .guar .ico { width: 54px; height: 54px; flex: 0 0 54px; border-radius: 50%; background: #e7f6ec; color: var(--green); font-weight: 700; font-size: 20px; display: flex; align-items: center; justify-content: center; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 600; color: var(--navy); }
+  details p { margin: 10px 0 0; color: var(--muted); }
+  .final { background: linear-gradient(160deg, var(--navy2), var(--teal)); color: #fff; text-align: center; padding: 56px 0; }
+  .final h2 { color: #fff; }
+  footer { padding: 24px 0 40px; color: var(--muted); font-size: 12.5px; text-align: center; }
+  .sticky { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid var(--line); padding: 10px 16px; display: none; z-index: 10; }
+  .sticky .btn { display: block; text-align: center; padding: 13px; font-size: 16px; }
+  @media (max-width: 640px) { .sticky { display: block; } body { padding-bottom: 70px; } section { padding: 36px 0; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">120 prompts prontos para copiar e colar</span>
+    <h1>Seu negócio com um assistente de marketing, vendas e financeiro por <span>R$ 37</span>. Para sempre.</h1>
+    <p class="sub">120 pedidos prontos para qualquer inteligência artificial gratuita. Você troca o que está entre colchetes pelo seu negócio e em 2 minutos sai a legenda, a resposta do WhatsApp, o orçamento ou a cobrança que você adiava há semanas.</p>
+    <a class="btn" href="https://yihnfzwtkqdfnwziutqa.supabase.co/functions/v1/kit/checkout?produto=kit-ia&origem=site">Quero o kit por R$ 37</a>
+    <div class="small">Acesso imediato. PIX, cartão ou boleto. 7 dias de garantia.</div>
+    <div class="pills"><span class="pill">ChatGPT</span><span class="pill">Gemini</span><span class="pill">Claude</span><span class="pill">Copilot</span><span class="pill">Todos na versão grátis</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Para quem toca o negócio sozinho</h2>
+    <p class="lead">Ou com uma equipe pequena, e reconhece pelo menos uma destas:</p>
+    <ul class="list">
+      <li>Sabe que precisa postar, mas trava na hora de escrever.</li>
+      <li>Responde "quanto custa?" no WhatsApp e perde a venda no silêncio depois.</li>
+      <li>Adia cobrar cliente porque não sabe como falar.</li>
+      <li>Faz orçamento no bloco de notas e sente que podia ser mais profissional.</li>
+      <li>Já abriu o ChatGPT, pediu "faça um post" e desistiu porque saiu genérico.</li>
+    </ul>
+  </div>
+</section>
+
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <h2>O que você recebe</h2>
+    <p class="lead">Um PDF de 19 páginas com 120 prompts em 8 capítulos, mais uma planilha e bônus.</p>
+    <div class="grid">
+      <div class="card"><span class="n">CAPÍTULO 1</span><h3>Instagram e Reels</h3><p>Calendário de 30 dias, legendas, roteiros de Reels, bio, carrossel, hashtags.</p></div>
+      <div class="card"><span class="n">CAPÍTULO 2</span><h3>WhatsApp e atendimento</h3><p>Mensagens prontas, resposta para "quanto custa", follow-up de quem sumiu, objeção "está caro".</p></div>
+      <div class="card"><span class="n">CAPÍTULO 3</span><h3>Vendas e propostas</h3><p>Orçamento profissional, proposta com 3 opções, pitch de 30 segundos, pedido de desconto.</p></div>
+      <div class="card"><span class="n">CAPÍTULO 4</span><h3>Preço, financeiro e cobrança</h3><p>Preço com margem, valor da sua hora, cobrar sem constranger, reajuste de preço.</p></div>
+      <div class="card"><span class="n">CAPÍTULO 5</span><h3>Rotina e organização</h3><p>Semana planejada em 5 minutos, checklists, delegar, contratar ajudante.</p></div>
+      <div class="card"><span class="n">CAPÍTULO 6</span><h3>Clientes</h3><p>Reativar cliente sumido, pós-venda, avaliação no Google, programa de indicação.</p></div>
+      <div class="card"><span class="n">CAPÍTULO 7</span><h3>Promoções e datas</h3><p>Black Friday, Natal, anúncio pago com pouco dinheiro, lançamento.</p></div>
+      <div class="card"><span class="n">CAPÍTULO 8</span><h3>Textos do dia a dia</h3><p>Contrato simples, e-mail, resposta a reclamação, política de troca.</p></div>
+      <div class="card bonus"><span class="n">PLANILHA</span><h3>Controle do Pequeno Negócio</h3><p>Controle financeiro com totais automáticos, calendário de 30 posts preenchido e calculadora de preço. Excel e Google Planilhas.</p></div>
+      <div class="card bonus"><span class="n">BÔNUS</span><h3>Perfil do seu negócio</h3><p>O texto que você cola uma vez e faz a IA responder como sua funcionária, mais a rotina de 30 minutos por semana e os 5 erros de quem começa.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Como funciona</h2>
+    <div class="steps">
+      <div class="step"><b>Compra e recebe na hora.</b> PIX cai em segundos. O acesso chega por e-mail e na área de membros.</div>
+      <div class="step"><b>Abre o ChatGPT, Gemini ou Claude.</b> Todos têm versão gratuita. Não precisa pagar nada a mais.</div>
+      <div class="step"><b>Cola o perfil do seu negócio e escolhe o prompt.</b> Troca o que está entre colchetes pelo seu caso.</div>
+      <div class="step"><b>Revisa e usa.</b> A primeira legenda sai em menos de 2 minutos. A cobrança também.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="price">
+      <div class="old">Um freelancer cobra a partir de R$ 300 por mês só para escrever legendas</div>
+      <div class="val"><small>R$</small> 37</div>
+      <p>Pagamento único. Sem mensalidade. Atualizações do PDF incluídas.</p>
+      <a class="btn" href="https://yihnfzwtkqdfnwziutqa.supabase.co/functions/v1/kit/checkout?produto=kit-ia&origem=site">Quero o kit por R$ 37</a>
+      <div class="small">PIX, cartão ou boleto. Acesso imediato.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="guar">
+      <div class="ico">7</div>
+      <div><h3 style="font-size:19px;color:var(--navy)">7 dias de garantia incondicional</h3><p style="margin:0;color:var(--muted)">Se abrir o material e achar que não serve para o seu negócio, pede o reembolso pela Kiwify e recebe tudo de volta, sem perguntas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <h2>Perguntas frequentes</h2>
+    <details open><summary>Preciso pagar o ChatGPT?</summary><p>Não. Todos os prompts funcionam nas versões gratuitas do ChatGPT, Gemini, Claude e Copilot.</p></details>
+    <details><summary>Serve para o meu ramo?</summary><p>Os prompts têm colchetes para você colocar o seu tipo de negócio. Funciona para serviços, comércio, clínicas, salões, oficinas, alimentação, profissionais liberais e autônomos.</p></details>
+    <details><summary>Não entendo nada de tecnologia.</summary><p>Se você consegue copiar e colar uma mensagem no WhatsApp, consegue usar o kit. O PDF tem 2 páginas de "como usar" antes dos prompts.</p></details>
+    <details><summary>Como recebo?</summary><p>Na hora, por e-mail e na área de membros da Kiwify. São 2 arquivos: um PDF e uma planilha.</p></details>
+    <details><summary>A planilha abre no celular?</summary><p>Abre no Excel, no Google Planilhas e no WPS, inclusive no celular. As fórmulas funcionam em todos.</p></details>
+    <details><summary>Tem atualização?</summary><p>Sim. Quem compra recebe as novas versões do PDF sem pagar de novo.</p></details>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Hoje à noite você pode ter os 30 próximos posts planejados, as mensagens do WhatsApp prontas e saber o preço certo do seu serviço.</h2>
+    <a class="btn" href="https://yihnfzwtkqdfnwziutqa.supabase.co/functions/v1/kit/checkout?produto=kit-ia&origem=site">Quero o kit por R$ 37</a>
+    <div class="small">Acesso imediato. PIX, cartão ou boleto. 7 dias de garantia.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Kit IA para o Pequeno Negócio. Material educativo. Não substitui orientação contábil ou jurídica. Pagamento processado pela Kiwify.</div>
+</footer>
+
+<div class="sticky"><a class="btn" href="https://yihnfzwtkqdfnwziutqa.supabase.co/functions/v1/kit/checkout?produto=kit-ia&origem=site">Quero o kit por R$ 37</a></div>
+
+</body>
+</html>

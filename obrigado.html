@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seu Kit IA</title>
+<meta name="robots" content="noindex">
+<style>
+  :root { --navy: #0f2a3d; --teal: #1e5a7a; --gold: #ffd166; --ink: #1c1f26; --muted: #5b6472; --bg: #f6f8fa; --line: #e3e8ee; --green: #15803d; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Segoe UI", system-ui, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.5; }
+  .top { background: linear-gradient(160deg, #0f2a3d, #1e5a7a); color: #fff; padding: 40px 16px; text-align: center; }
+  .top h1 { font-family: Georgia, serif; margin: 0 0 8px; font-size: clamp(26px, 5vw, 36px); }
+  .top p { margin: 0; opacity: .9; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 24px 16px 60px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin-bottom: 16px; }
+  .card h2 { font-family: Georgia, serif; color: var(--navy); margin: 0 0 10px; font-size: 22px; }
+  .muted { color: var(--muted); font-size: 14px; }
+  .dl { display: block; background: var(--navy); color: #fff; text-decoration: none; font-weight: 700; padding: 14px 18px; border-radius: 10px; margin: 10px 0; }
+  .dl span { display: block; font-weight: 400; font-size: 13px; opacity: .85; }
+  .spin { width: 28px; height: 28px; border: 3px solid var(--line); border-top-color: var(--teal); border-radius: 50%; animation: s 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 10px; }
+  @keyframes s { to { transform: rotate(360deg); } }
+  .ok { color: var(--green); font-weight: 700; }
+  input[type=email] { width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 8px; font-size: 16px; margin: 8px 0; }
+  button { background: var(--gold); color: var(--navy); border: 0; font-weight: 700; font-size: 16px; padding: 12px 18px; border-radius: 8px; cursor: pointer; }
+  ol { padding-left: 20px; }
+  .hide { display: none; }
+</style>
+</head>
+<body>
+<div class="top"><h1>Kit IA para o Pequeno Negócio</h1><p>Sua área de acesso</p></div>
+<div class="wrap">
+
+  <div class="card" id="estado">
+    <h2 id="titulo"><span class="spin"></span>Confirmando seu pagamento…</h2>
+    <p class="muted" id="texto">Isso leva alguns segundos. Se você pagou por PIX, a confirmação chega assim que o banco avisa o Mercado Pago. Pode deixar esta página aberta.</p>
+  </div>
+
+  <div class="card hide" id="links">
+    <h2>Pronto. Seus arquivos:</h2>
+    <div id="lista"></div>
+    <p class="muted">Os links valem por 7 dias. Também mandamos tudo para o e-mail usado na compra. Se vencerem, peça novos links abaixo.</p>
+    <h2 style="font-size:18px;margin-top:18px">Comece assim, em 5 minutos</h2>
+    <ol>
+      <li>Abra o PDF na página "Como usar" e preencha o perfil do seu negócio.</li>
+      <li>Salve esse texto nas notas do celular.</li>
+      <li>Abra o ChatGPT, cole o perfil e use o prompt 1.1 para planejar seus 30 dias de posts.</li>
+    </ol>
+  </div>
+
+  <div class="card" id="recuperar">
+    <h2 style="font-size:18px">Já comprou e perdeu os links?</h2>
+    <p class="muted">Informe o e-mail usado no pagamento e mandamos links novos.</p>
+    <form id="form">
+      <input type="email" id="email" placeholder="seu@email.com" required>
+      <button type="submit">Reenviar meus links</button>
+      <p class="muted" id="msg"></p>
+    </form>
+  </div>
+
+  <p class="muted" style="text-align:center">Dúvidas: responda o e-mail de entrega. <a href="index.html" style="color:var(--teal)">Voltar para a página do kit</a></p>
+</div>
+
+<script>
+  const API = "https://yihnfzwtkqdfnwziutqa.supabase.co/functions/v1/kit";
+  const q = new URLSearchParams(location.search);
+  const ref = q.get("ref") || q.get("external_reference") || "";
+  const pagamentoId = q.get("payment_id") || q.get("collection_id") || "";
+  const el = (id) => document.getElementById(id);
+  let tentativas = 0;
+
+  function mostrarLinks(d) {
+    el("estado").classList.add("hide");
+    el("links").classList.remove("hide");
+    el("lista").innerHTML = d.links.map((l) =>
+      `<a class="dl" href="${l.url}">${l.nome}<span>${l.nome.endsWith(".pdf") ? "PDF com os 120 prompts" : "Planilha: financeiro, posts e preço"}</span></a>`
+    ).join("");
+    if (d.email) el("email").value = d.email;
+  }
+
+  async function verificar() {
+    if (!ref) {
+      el("titulo").innerHTML = "Já comprou?";
+      el("texto").textContent = "Use o formulário abaixo para receber seus links de novo.";
+      return;
+    }
+    tentativas++;
+    try {
+      const r = await fetch(`${API}/entrega?ref=${encodeURIComponent(ref)}&payment_id=${encodeURIComponent(pagamentoId)}`);
+      const d = await r.json();
+      if (d.status === "aprovado") return mostrarLinks(d);
+      if (d.status === "rejected" || d.status === "cancelled") {
+        el("titulo").textContent = "O pagamento não foi aprovado.";
+        el("texto").innerHTML = 'Tente de novo com outro cartão ou por PIX: <a href="index.html" style="color:var(--teal)">voltar para a página do kit</a>.';
+        return;
+      }
+      if (tentativas === 4) el("texto").textContent = "Ainda aguardando a confirmação do banco. PIX costuma levar até 1 minuto; cartão às vezes alguns minutos. Esta página atualiza sozinha.";
+      if (tentativas < 150) setTimeout(verificar, tentativas < 10 ? 4000 : 10000);
+      else { el("titulo").textContent = "Ainda sem confirmação."; el("texto").textContent = "Assim que o pagamento for aprovado, os links chegam no seu e-mail. Você também pode pedir abaixo."; }
+    } catch (e) {
+      if (tentativas < 150) setTimeout(verificar, 8000);
+    }
+  }
+  verificar();
+
+  el("form").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    el("msg").textContent = "Enviando…";
+    try {
+      await fetch(`${API}/recuperar`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: el("email").value }) });
+      el("msg").innerHTML = '<span class="ok">Se esse e-mail tiver uma compra aprovada, os links chegam em poucos minutos. Olhe também o spam.</span>';
+    } catch (e) {
+      el("msg").textContent = "Não deu certo agora. Tente de novo em instantes.";
+    }
+  });
+</script>
+</body>
+</html>
