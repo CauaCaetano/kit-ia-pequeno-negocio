@@ -28,7 +28,7 @@
 </style>
 </head>
 <body>
-<div class="top"><h1>Kit IA para o Pequeno Negócio</h1><p>Sua área de acesso</p></div>
+<div class="top"><h1 id="cab">Blue Rose Express</h1><p>Sua área de acesso</p></div>
 <div class="wrap">
 
   <div class="card" id="estado">
@@ -48,6 +48,14 @@
     </ol>
   </div>
 
+  <div class="card hide" id="veltria">
+    <h2>Pronto. Seu <span id="v-sistema"></span> está liberado por 12 meses.</h2>
+    <p>Acesso válido até <b id="v-ate"></b>, no e-mail <b id="v-email"></b>. Sem cobrança automática no fim do ano.</p>
+    <div id="v-passos"></div>
+    <a class="dl" id="v-link" href="#">Abrir o sistema<span id="v-link-sub"></span></a>
+    <p class="muted">Mandamos as mesmas instruções para o seu e-mail. Se não chegar, olhe o spam ou peça abaixo.</p>
+  </div>
+
   <div class="card" id="recuperar">
     <h2 style="font-size:18px">Já comprou e perdeu os links?</h2>
     <p class="muted">Informe o e-mail usado no pagamento e mandamos links novos.</p>
@@ -58,7 +66,7 @@
     </form>
   </div>
 
-  <p class="muted" style="text-align:center">Dúvidas: responda o e-mail de entrega. <a href="index.html" style="color:var(--teal)">Voltar para a página do kit</a></p>
+  <p class="muted" style="text-align:center">Dúvidas: responda o e-mail de entrega. <a href="index.html" style="color:var(--teal)">Kit IA</a> · <a href="veltria.html" style="color:var(--teal)">Veltria anual</a></p>
 </div>
 
 <script>
@@ -78,6 +86,31 @@
     if (d.email) el("email").value = d.email;
   }
 
+  function mostrarVeltria(d) {
+    el("estado").classList.add("hide");
+    el("veltria").classList.remove("hide");
+    el("cab").textContent = d.sistema || "Veltria";
+    el("v-sistema").textContent = d.sistema || "Veltria";
+    el("v-ate").textContent = d.ate ? d.ate.slice(0, 10).split("-").reverse().join("/") : "";
+    el("v-email").textContent = d.email || "";
+    if (d.sem_email) {
+      el("v-passos").innerHTML = "<p><b>O Mercado Pago não informou o e-mail do pagamento.</b> Use o formulário abaixo com o e-mail que você quer usar no sistema e a gente libera à mão em poucas horas.</p>";
+    } else if (d.pendente_cadastro) {
+      el("v-passos").innerHTML = `<ol>
+        <li>Crie sua conta em <a href="${d.conta}" style="color:var(--teal)">${d.conta}</a> usando exatamente o e-mail <b>${d.email}</b>. É ele que carrega a liberação.</li>
+        <li>Confirme o e-mail que a Blue Rose mandar e abra o sistema no botão abaixo.</li>
+        <li>Na primeira vez, crie a sua empresa. O token de dono aparece em Minha conta e também chega por e-mail.</li></ol>`;
+    } else {
+      el("v-passos").innerHTML = `<ol>
+        <li>Entre com a sua conta (<b>${d.email}</b>) no botão abaixo.</li>
+        <li>Se você estava no teste ou no mensal, ele foi encerrado: nada mais é cobrado por mês.</li>
+        <li>Suas empresas já estão com o plano ativo.</li></ol>`;
+    }
+    el("v-link").href = d.link || "https://bluerose-store.com/";
+    el("v-link-sub").textContent = d.link || "";
+    if (d.email) el("email").value = d.email;
+  }
+
   async function verificar() {
     if (!ref) {
       el("titulo").innerHTML = "Já comprou?";
@@ -88,7 +121,7 @@
     try {
       const r = await fetch(`${API}/entrega?ref=${encodeURIComponent(ref)}&payment_id=${encodeURIComponent(pagamentoId)}`);
       const d = await r.json();
-      if (d.status === "aprovado") return mostrarLinks(d);
+      if (d.status === "aprovado") return d.tipo === "veltria" ? mostrarVeltria(d) : mostrarLinks(d);
       if (d.status === "rejected" || d.status === "cancelled") {
         el("titulo").textContent = "O pagamento não foi aprovado.";
         el("texto").innerHTML = 'Tente de novo com outro cartão ou por PIX: <a href="index.html" style="color:var(--teal)">voltar para a página do kit</a>.';
