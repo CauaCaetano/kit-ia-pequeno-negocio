@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Seu Kit IA</title>
+<title>Seu pagamento · Blue Rose Express</title>
 <meta name="robots" content="noindex">
 <style>
   :root { --navy: #0f2a3d; --teal: #1e5a7a; --gold: #ffd166; --ink: #1c1f26; --muted: #5b6472; --bg: #f6f8fa; --line: #e3e8ee; --green: #15803d; }
@@ -66,7 +66,7 @@
     </form>
   </div>
 
-  <p class="muted" style="text-align:center">Dúvidas: responda o e-mail de entrega. <a href="index.html" style="color:var(--teal)">Kit IA</a> · <a href="veltria.html" style="color:var(--teal)">Veltria anual</a></p>
+  <p class="muted" style="text-align:center">Dúvidas: responda o e-mail de entrega. <a href="veltria.html" style="color:var(--teal)">Veltria anual</a></p>
 </div>
 
 <script>
@@ -124,7 +124,7 @@
       if (d.status === "aprovado") return d.tipo === "veltria" ? mostrarVeltria(d) : mostrarLinks(d);
       if (d.status === "rejected" || d.status === "cancelled") {
         el("titulo").textContent = "O pagamento não foi aprovado.";
-        el("texto").innerHTML = 'Tente de novo com outro cartão ou por PIX: <a href="index.html" style="color:var(--teal)">voltar para a página do kit</a>.';
+        el("texto").innerHTML = 'Tente de novo com outro cartão ou por PIX: <a href="veltria.html" style="color:var(--teal)">voltar para a página do Veltria</a>.';
         return;
       }
       if (tentativas === 4) el("texto").textContent = "Ainda aguardando a confirmação do banco. PIX costuma levar até 1 minuto; cartão às vezes alguns minutos. Esta página atualiza sozinha.";
